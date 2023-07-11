@@ -81,8 +81,12 @@ contract TicketMaster is ERC721{
         return seatsTaken[_id];
     }
 
-    function withdraw() public onlyOwner{
-        (bool success, ) = owner.call{value: address(this).balance}("");
-        require(success);
+    // function withdraw() public onlyOwner{
+    //     (bool success, ) = owner.call{value: address(this).balance}("");
+    //     require(success);
+    // }
+    function withdraw() public onlyOwner {
+        require(address(this).balance > 0, "Contract balance is zero");
+        payable(owner).transfer(address(this).balance);
     }
 }
