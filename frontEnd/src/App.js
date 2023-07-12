@@ -4,7 +4,8 @@ import Navigation from "./components/Navigation";
 import Card from "./components/Card";
 import config from "./config.json";
 import TokenMaster from "./abis/abi.json";
-
+import Sort from "./components/Sort";
+import SeatChart from "./components/SeatChart"
 function App() {
   const [provider, setProvider] = useState(null);
   const [account, setAccount] = useState(null);
@@ -36,9 +37,10 @@ function App() {
             TokenMaster,
             provider
           );
-          setTokenMaster(tokenMasterContract);
+          setTokenMaster(tokenMasterContract)
           console.log(tokenMasterContract)
           const totalOccasions = await tokenMasterContract.totalOccasions();
+          console.log(totalOccasions)
           const occasions = [];
           for (let i = 1; i <= totalOccasions; i++) {
             const occasion = await tokenMasterContract.getOccasion(i);
@@ -64,6 +66,7 @@ function App() {
           <strong>EVENT</strong> TICKETS
         </h2>
       </header>
+      <Sort/>
       <div className="cards">
         {occasion.map((occasion, index) => (
           <Card
@@ -78,6 +81,14 @@ function App() {
             key={index}
           />
         ))}
+        {toggle && (
+        <SeatChart
+          occasion={occasion}
+          tokenMaster={tokenMaster}
+          provider={provider}
+          setToggle={setToggle}
+        />
+      )}
       </div>
     </div>
   );
