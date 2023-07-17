@@ -7,13 +7,13 @@ const SeatChart = ({ occasion, tokenMaster, provider, setToggle }) => {
   const [hasSold, setHasSold] = useState(false)
 
   const getSeatsTaken = async () => {
-    const seatsTaken = await tokenMaster.getSeatsTaken(occasion.id)
+    const seatsTaken = await tokenMaster.getSeatsTaken(occasion.id);
+    console.log("Seat",seatsTaken)
     setSeatsTaken(seatsTaken)
   }
 
   const buyHandler = async (_seat) => {
     setHasSold(false)
-
     const signer = await provider.getSigner()
     const transaction = await tokenMaster.connect(signer).mint(occasion.id, _seat, { value: occasion.cost })
     await transaction.wait()

@@ -81,6 +81,7 @@ function App() {
             key={index}
           />
         ))}
+        
         {toggle && (
         <SeatChart
           occasion={occasion}
