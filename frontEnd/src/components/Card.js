@@ -4,13 +4,13 @@ import React from 'react'
 const Card = ({ occasion, toggle, setToggle, setOccasion }) => {
   const togglePop = () => {
     setOccasion(occasion);
-    console.log(occasion)
+    console.log(occasion.cost)
     toggle ? setToggle(false) : setToggle(true);
   }
 
-  let cost = ethers.formatEther(occasion.cost)
-  console.log(cost)
+  var cost = ethers.formatEther(occasion.cost)
   
+  console.log(cost)
   return (
     <div className='card'>
       <div className='card__info'>

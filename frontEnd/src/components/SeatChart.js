@@ -8,8 +8,8 @@ const SeatChart = ({ occasion, tokenMaster, provider, setToggle }) => {
 
   const getSeatsTaken = async () => {
     const seatsTaken = await tokenMaster.getSeatsTaken(occasion.id);
-    console.log("Seat",seatsTaken)
-    setSeatsTaken(seatsTaken)
+    if(seatsTaken.length>0){setSeatsTaken(true);}
+    else{setSeatsTaken(true)}
   }
 
   const buyHandler = async (_seat) => {
@@ -21,10 +21,10 @@ const SeatChart = ({ occasion, tokenMaster, provider, setToggle }) => {
     setHasSold(true)
   }
 
-  useEffect(() => {
-    getSeatsTaken()
-  }, [hasSold])
-
+useEffect(()=>{
+  console.log("object")
+  getSeatsTaken()
+},[hasSold])
   return (
     <div className="occasion">
       <div className="occasion__seating">
@@ -55,7 +55,7 @@ const SeatChart = ({ occasion, tokenMaster, provider, setToggle }) => {
         <div className="occasion__spacer--1 ">
           <strong>WALKWAY</strong>
         </div>
-
+          {console.log("seats",seatsTaken)}
         {seatsTaken && Array(Number(occasion.maxTickets) - 50).fill(1).map((e, i) =>
           <Seat
             i={i}

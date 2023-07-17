@@ -9,7 +9,7 @@ async function main(){
   const TokenMaster = await hre.ethers.getContractFactory("TicketMaster");
   const tokenMaster = await TokenMaster.deploy("TokenMaster","TM");
 
-  console.log(`Deployed TokenMaster Contract at: ${tokenMaster.runner.address}\n`)
+  console.log(`Deployed TokenMaster Contract at: ${await tokenMaster.getAddress()}\n`)
   const occasions = [
     {
       name: "UFC Miami",
