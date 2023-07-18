@@ -9,14 +9,14 @@ const Navigation = ({account,setAccount}) => {
   return (
     <nav>
         <div className='nav__brand'>
-            <h1>TOKENMASTER</h1>
-            <input className='nav__search' type='text' placeholder='find millions of experience'></input>
-            <ul className='nav__links'>
+            <h1>EVENTBOOKR</h1>
+            <input className='nav__search' type='text' placeholder='search for latest events'></input>
+            {/* <ul className='nav__links'>
                 <li><a href="/">Concerts</a></li>
                 <li><a href="/">Sports</a></li>
                 <li><a href="/">Arts & Theater</a></li>
                 <li><a href="/">More</a></li>
-            </ul>
+            </ul> */}
         </div>
         {
             account?(
