@@ -5,12 +5,14 @@ import Card from "./components/Card";
 import config from "./config.json";
 import TokenMaster from "./abis/abi.json";
 import Sort from "./components/Sort";
-import SeatChart from "./components/SeatChart"
+import SeatChart from "./components/SeatChart";
+
 function App() {
   const [provider, setProvider] = useState(null);
   const [account, setAccount] = useState(null);
   const [tokenMaster, setTokenMaster] = useState(null);
-  const [occasion, setOccasion] = useState([]);
+  const [occasions, setOccasions] = useState([]);
+  const [occasion,setOccasion] = useState({});
   const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
@@ -38,15 +40,14 @@ function App() {
             provider
           );
           setTokenMaster(tokenMasterContract)
-          console.log(tokenMasterContract)
+          console.log("contract ",tokenMasterContract)
           const totalOccasions = await tokenMasterContract.totalOccasions();
-          console.log(totalOccasions)
           const occasions = [];
           for (let i = 1; i <= totalOccasions; i++) {
             const occasion = await tokenMasterContract.getOccasion(i);
             occasions.push(occasion);
           }
-          setOccasion(occasions);
+          setOccasions(occasions);
         } else {
           console.log("Please install MetaMask or another Web3 wallet extension.");
         }
@@ -55,7 +56,7 @@ function App() {
       }
     };
 
-    loadBlockchainData();
+    loadBlockchainData()
   }, []);
 
   return (
@@ -68,29 +69,22 @@ function App() {
       </header>
       <Sort/>
       <div className="cards">
-        {occasion.map((occasion, index) => (
+        {occasions.map((occasion, index) => (
           <Card
-            occasion={occasion}
-            id={index + 1}
-            tokenMaster={tokenMaster}
-            provider={provider}
-            account={account}
-            toggle={toggle}
-            setToggle={setToggle}
-            setOccasion={setOccasion}
-            key={index}
-          />
+          occasion={occasion}
+          setOccasion={setOccasion}
+          toggle={toggle}
+          setToggle={setToggle}
+          key={index}
+        />     
         ))}
-        
-        {toggle && (
-        <SeatChart
+      </div>
+      {toggle && (<SeatChart
           occasion={occasion}
           tokenMaster={tokenMaster}
           provider={provider}
           setToggle={setToggle}
-        />
-      )}
-      </div>
+        />)}
     </div>
   );
 }
