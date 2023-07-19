@@ -120,6 +120,7 @@ function App() {
           <img src={add} alt="add-events"></img>
         </button>
       </div>
+    
       {click && (
         <AddEvent
           provider={provider}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import close from "../assets/close.svg";
 import { ethers } from "ethers";
-import BigNumber from 'bignumber.js';
+import config from "../config.json"
 const AddEvent = ({ setClick, tokenMaster, provider }) => {
   const [name, setName] = useState("");
   const [cost, setCost] = useState(0);
@@ -35,7 +35,12 @@ const AddEvent = ({ setClick, tokenMaster, provider }) => {
     const costEth = ethers.parseEther(cost.toString())
     const deployer = await provider.getSigner();
     console.log(deployer)
-    await tokenMaster.connect(deployer).list(name,costEth,tickets,date,time,location)
+    const netorkID = await provider.getNetwork().then((network)=>network.chainId)
+    if(deployer.address !== config[netorkID].TicketMaster.address){
+      alert("You cannot add event !!")
+    }else{
+      await tokenMaster.connect(deployer).list(name,costEth,tickets,date,time,location)
+    }
     setClick(false)
   }
   return (
