@@ -64,6 +64,7 @@ function App() {
             occasions.push(occasion);
           }
           setOccasions(occasions);
+          setFilteredOccasions(occasions);
         } else {
           console.log(
             "Please install MetaMask or another Web3 wallet extension."
