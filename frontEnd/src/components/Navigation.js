@@ -1,22 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {ethers} from "ethers"
-const Navigation = ({account,setAccount}) => {
+const Navigation = ({account,setAccount,searchQuery,setSearchQuery}) => {
+    
+
     const connectHandler = async ()=>{
         const accounts = await window.ethereum.request({method:"eth_requestAccounts"});
         const getAccount = ethers.getAddress(accounts[0]);
         setAccount(getAccount);
     }
+
   return (
     <nav>
         <div className='nav__brand'>
             <h1>EVENTBOOKR</h1>
-            <input className='nav__search' type='text' placeholder='search for latest events'></input>
-            {/* <ul className='nav__links'>
-                <li><a href="/">Concerts</a></li>
-                <li><a href="/">Sports</a></li>
-                <li><a href="/">Arts & Theater</a></li>
-                <li><a href="/">More</a></li>
-            </ul> */}
+            <input 
+            className='nav__search' 
+            type='text' 
+            placeholder='search for latest events'
+            value={searchQuery}
+            onChange={(e)=>setSearchQuery(e.target.value)}
+            ></input>
         </div>
         {
             account?(
@@ -33,4 +36,4 @@ const Navigation = ({account,setAccount}) => {
   )
 }
 
-export default Navigation
+export default Navigation;

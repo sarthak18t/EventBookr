@@ -12,12 +12,12 @@ async function main(){
   console.log(`Deployed TokenMaster Contract at: ${await tokenMaster.getAddress()}\n`)
   const occasions = [
     {
-      name: "UFC Miami",
-      cost: tokens(3),
+      name: "MLH Hackathon",
+      cost: tokens(0.1),
       tickets: 0,
       date: "May 31",
       time: "6:00PM IST",
-      location: "Miami-Dade Arena - Miami, FL"
+      location: "Vadodara,Gujarat"
     },
     {
       name: "ETH Tokyo",
@@ -36,20 +36,20 @@ async function main(){
       location: "PARIS"
     },
     {
-      name: "Dallas Mavericks vs. San Antonio Spurs",
-      cost: tokens(5),
+      name: "ASIA CUP IND vs PAK",
+      cost: tokens(1),
       tickets: 0,
-      date: "Jun 11",
+      date: "Aug 11",
       time: "2:30PM IST",
-      location: "American Airlines Center - Dallas, TX"
+      location: "Mumbai, Maharastra"
     },
     {
-      name: "ETH Global Toronto",
-      cost: tokens(1.5),
+      name: "World Table Tennis League",
+      cost: tokens(0.5),
       tickets: 125,
       date: "Jul 23",
       time: "11:00AM IST",
-      location: "Toronto, Canada"
+      location: "Dubai, UAE"
     }
   ]
 
